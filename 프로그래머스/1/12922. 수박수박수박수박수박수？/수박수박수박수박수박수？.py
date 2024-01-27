@@ -1,3 +1,3 @@
 def solution(n):
-    answer = "수박" * 10000
+    answer = "수박" * 5000
     return answer[:n]
