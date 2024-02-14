@@ -11,27 +11,21 @@ for _ in range(m):
     a, b = map(int, f().split())
     graph[a].append(b)
 
-def bfs(start):
-    answer = []
-    q = deque([start])
-    visited[start] = True
-    distance[start] = 0
-    while q:
-        now = q.popleft()
-        for i in graph[now]:
+def bfs(graph, x, visited):
+    visited[x] = True
+    queue = deque([x])
+    while queue:
+        v = queue.popleft()
+        for i in graph[v]:
             if not visited[i]:
                 visited[i] = True
-                q.append(i)
-                distance[i] = distance[now] + 1
-                if distance[i] == k:
-                    answer.append(i)
-    if len(answer) == 0:
+                queue.append(i)
+                distance[i] = distance[v] + 1
+    if k not in distance:
         print(-1)
-    else:
-        answer.sort()
-        for i in answer:
-            print(i, end='\n')
-
-bfs(x)
-
-
+    else: 
+        for j in range(len(distance)):
+            if distance[j] == k:
+                print(j)
+                
+bfs(graph, x, visited)
