@@ -1,32 +1,23 @@
 n = int(input())
-table = [0] * (n + 1)
+count_recur, count_dp = 0, 0
+f = [0] * (n+1)
 
-cnt1 = 0
-cnt2 = 0
+def fib_recur(n):
+  global count_recur 
+  if (n==1 or n==2):
+    count_recur += 1
+    return 1
+  else:
+    return fib_recur(n-1) + fib_recur(n-2)
 
-def fib(n):
-    global cnt1
+def fib_dp(n):
+    global count_dp
+    f[1], f[2] = 1, 1
+    for i in range(3, n+1):
+        count_dp += 1
+        f[i] = f[i-1] + f[i-2]
+    return f[i]
 
-    if (n == 1 or n == 2):
-        cnt1 += 1
-        return 1
-    else:
-        return (fib(n - 1) + fib(n - 2))
-
-def fibonacci(n):
-    global cnt2
-
-    table[1] = 1
-    table[2] = 1
-
-    for i in range(3, n + 1):
-        table[i] = table[i - 1] + table[i - 2]
-        cnt2 += 1
-
-    return table[n]
-    
-fib(n)
-fibonacci(n)
-
-print(cnt1, end = ' ')
-print(cnt2)
+fib_recur(n)
+fib_dp(n)
+print(count_recur, count_dp)
