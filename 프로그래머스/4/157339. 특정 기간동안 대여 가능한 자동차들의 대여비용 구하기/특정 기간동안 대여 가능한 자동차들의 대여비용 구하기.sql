@@ -1,35 +1,3 @@
-# -- 코드를 입력하세요
-# SELECT 
-#     C.CAR_ID,
-#     C.CAR_TYPE,
-#     ROUND(C.DAILY_FEE * 30 * (100 - P.DISCOUNT_RATE)/100) AS FEE ### 이부분 임의로 넣은거라 고쳐야 해
-# FROM 
-#     CAR_RENTAL_COMPANY_CAR AS C
-# JOIN 
-#     CAR_RENTAL_COMPANY_RENTAL_HISTORY AS H
-# ON
-#     C.CAR_ID = H.CAR_ID
-# JOIN
-#     CAR_RENTAL_COMPANY_DISCOUNT_PLAN AS P
-# ON 
-#     C.CAR_TYPE = P.CAR_TYPE
-# WHERE 
-#     C.CAR_ID NOT IN (
-#         select car_id
-#         from car_rental_company_rental_history
-#         where start_date < '2022-11-30' or end_date > '2022-11-01'
-#     ) 
-#     AND
-#     P.DURATION_TYPE = '30일 이상'
-# GROUP BY
-#     CAR_ID
-# HAVING
-#     CAR_TYPE IN ('세단', 'SUV') 
-#     AND
-#     (FEE >= 500000 AND FEE < 2000000)
-# ORDER BY
-#     FEE DESC, C.CAR_TYPE ASC, C.CAR_ID DESC
-
 SELECT C.CAR_ID, C.CAR_TYPE, ROUND(C.DAILY_FEE*30*(100-P.DISCOUNT_RATE)/100) AS FEE
 FROM CAR_RENTAL_COMPANY_CAR AS C
 JOIN CAR_RENTAL_COMPANY_RENTAL_HISTORY AS H ON C.CAR_ID=H.CAR_ID
