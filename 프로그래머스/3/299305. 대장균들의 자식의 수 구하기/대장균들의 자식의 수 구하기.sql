@@ -1,10 +1,7 @@
 -- 코드를 작성해주세요
-SELECT E.ID, COALESCE(C.CHILD_COUNT, 0) AS CHILD_COUNT
-FROM ECOLI_DATA AS E
-LEFT JOIN (
-    select parent_id as id, count(*) as child_count
-    from ecoli_data
-    where id is not null
-    group by parent_id
-) AS C
-ON E.ID = C.ID
+SELECT E1.ID, COUNT(E2.ID) AS CHILD_COUNT
+FROM ECOLI_DATA AS E1
+LEFT JOIN ECOLI_DATA AS E2
+ON E1.ID = E2.PARENT_ID
+GROUP BY 1
+ORDER BY 1
