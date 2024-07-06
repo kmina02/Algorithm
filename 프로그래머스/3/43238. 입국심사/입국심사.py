@@ -1,8 +1,6 @@
 def solution(n, times):
-    k = sorted(times)[0]
-    min = k * n
-    start, end = 1, 1e18
-    while start <= end:
+    start, end = 1, sorted(times)[-1] * n
+    while start < end:
         mid = (start + end) // 2
         if sum([mid//t for t in times]) > n:
             end = mid - 1
@@ -10,8 +8,4 @@ def solution(n, times):
             start = mid + 1
         else: 
             break
-    # while True:
-    #     mid -= 1
-    #     if sum([mid//t for t in times]) < n:
-    #         break
     return mid - sorted([mid%t for t in times])[0]
