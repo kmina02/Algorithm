@@ -1,7 +1,7 @@
 def solution(n, times):
     k = sorted(times)[0]
     min = k * n
-    start, end = 1, 1e19
+    start, end = 1, 1e18
     while start <= end:
         mid = (start + end) // 2
         if sum([mid//t for t in times]) > n:
